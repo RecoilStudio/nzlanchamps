@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>NZ LAN Champs</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Barlow:wght@400;500;600&family=Share+Tech+Mono&display=swap">
@@ -14,7 +13,6 @@
   --red: #ff3347;
   --red-deep: #d8132b;
   --ice: #dce8ff;
-  --danger: #ffb3bb;
   --display: "Teko", "Arial Narrow", Impact, sans-serif;
   --body: "Barlow", "Segoe UI", system-ui, sans-serif;
   --mono: "Share Tech Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -34,7 +32,6 @@ body {
 a { color: var(--ice); }
 :focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
 
-/* cut corners */
 .cut { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); }
 
 /* top bar */
@@ -74,8 +71,7 @@ h1 .champs::after { content: ""; position: absolute; left: 0; right: -4%; bottom
   clip-path: polygon(14px 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
 }
 .btn:hover { background: #ff5566; }
-.btn[disabled] { opacity: .6; cursor: progress; }
-.btn.alt { background: var(--ice); color: var(--bg); }
+.btn.big { font-size: 2.1rem; padding: 18px 52px 16px; }
 .ghost { color: var(--muted); font-size: .95rem; }
 
 /* bracket */
@@ -90,14 +86,15 @@ h2 { font-family: var(--display); font-weight: 700; text-transform: uppercase; f
 h2::before { content: ""; display: block; width: 56px; height: 8px; background: var(--red); transform: skewX(-24deg); margin-bottom: 14px; }
 .sub { color: var(--muted); max-width: 60ch; margin: 0 0 34px; font-size: 1.08rem; }
 
-.games { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
-.game { padding: 26px 26px 28px; background: var(--panel); min-width: 0; }
-.game.main { background: var(--red-deep); }
-.game .tag { font-family: var(--mono); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-.game.main .tag { color: #ffd5da; }
-.game h3 { font-family: var(--display); font-weight: 700; font-size: 2.6rem; text-transform: uppercase; line-height: .95; letter-spacing: .02em; margin: 8px 0 10px; }
-.game p { margin: 0; color: var(--muted); }
-.game.main p { color: #ffe4e7; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+.card { padding: 26px 26px 28px; background: var(--panel); min-width: 0; }
+.card.main { background: var(--red-deep); grid-column: span 2; }
+.card .tag { font-family: var(--mono); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.card.main .tag { color: #ffd5da; }
+.card h3 { font-family: var(--display); font-weight: 700; font-size: 2.6rem; text-transform: uppercase; line-height: .95; letter-spacing: .02em; margin: 8px 0 10px; }
+.card p { margin: 0; color: var(--muted); }
+.card.main p { color: #ffe4e7; max-width: 46ch; }
+@media (max-width: 640px) { .card.main { grid-column: auto; } }
 
 dl.spec { display: grid; grid-template-columns: minmax(120px, 200px) 1fr; margin: 0; }
 dl.spec dt, dl.spec dd { padding: 16px 0; border-bottom: 1px solid var(--line); margin: 0; min-width: 0; }
@@ -105,33 +102,11 @@ dl.spec dt:first-of-type, dl.spec dt:first-of-type + dd { border-top: 1px solid 
 dl.spec dt { font-family: var(--display); font-weight: 600; font-size: 1.4rem; letter-spacing: .06em; text-transform: uppercase; color: var(--red); padding-right: 16px; line-height: 1.3; }
 .pill { font-family: var(--mono); font-size: .75rem; color: var(--bg); background: var(--ice); padding: 2px 8px; margin-left: 8px; letter-spacing: .08em; white-space: nowrap; }
 
-/* form */
-.formcard { background: var(--panel); padding: 34px 30px; max-width: 800px; }
-form { display: grid; gap: 24px; }
-.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-.field { display: grid; gap: 7px; min-width: 0; }
-label, legend { font-weight: 600; font-size: .98rem; }
-.hint { color: var(--muted); font-weight: 400; font-size: .88rem; }
-input[type=text], input[type=email], select, textarea {
-  width: 100%; background: var(--bg); color: var(--text); border: 2px solid var(--line);
-  padding: 12px 14px; font: inherit; border-radius: 0;
-}
-input[type=text]:focus, input[type=email]:focus, select:focus, textarea:focus { border-color: var(--red); outline: none; }
-textarea { min-height: 100px; resize: vertical; }
-input::placeholder, textarea::placeholder { color: #667aa8; }
-fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 10px; min-width: 0; }
-.opts { display: flex; flex-wrap: wrap; gap: 10px; }
-.opt { position: relative; }
-.opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
-.opt span { display: block; border: 2px solid var(--line); background: var(--bg); padding: 9px 18px; font-weight: 600; }
-.opt input:checked + span { background: var(--red); border-color: var(--red); color: #fff; }
-.opt input:focus-visible + span { outline: 3px solid var(--ice); outline-offset: 2px; }
-.err { color: var(--danger); font-size: .95rem; min-height: 1.2em; margin: 0; font-weight: 500; }
-.note { color: var(--muted); font-size: .92rem; margin: 0; }
-.done { background: var(--panel-2); padding: 34px 30px; max-width: 800px; }
-.done h3 { font-family: var(--display); font-size: 3rem; text-transform: uppercase; margin: 0 0 6px; line-height: .95; color: #fff; }
-.done p { margin: 0 0 14px; color: var(--ice); }
-.fallback { border: 2px dashed var(--red); padding: 16px; max-width: 800px; color: var(--ice); margin-bottom: 18px; }
+/* register */
+.register { background: var(--panel); padding: 40px 32px; max-width: 800px; }
+.register h3 { font-family: var(--display); font-weight: 700; font-size: 2.4rem; text-transform: uppercase; line-height: 1; margin: 0 0 10px; }
+.register p { margin: 0 0 24px; color: var(--ice); max-width: 52ch; }
+.register .ghost { margin: 18px 0 0; }
 
 details { border-bottom: 1px solid var(--line); padding: 18px 0; }
 details:first-of-type { border-top: 1px solid var(--line); }
@@ -146,7 +121,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   dl.spec dt { border-bottom: 0; padding-bottom: 0; }
   dl.spec dt:first-of-type + dd { border-top: 0; }
   .bar nav { gap: 14px; }
-  .formcard, .done { padding: 24px 18px; }
+  .register { padding: 28px 20px; }
+  .btn.big { font-size: 1.8rem; padding: 16px 34px 14px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
@@ -154,7 +130,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <header class="bar">
   <div class="wrap">
     <div class="brand"><svg class="cross" id="logoCross" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"></svg><span>NZ <em>LAN</em> Champs</span></div>
-    <nav aria-label="Sections"><a href="#games">Games</a><a href="#format">Format</a><a href="#interest">Register</a><a href="#faq">FAQ</a></nav>
+    <nav aria-label="Sections"><a href="#game">The game</a><a href="#format">Format</a><a href="#interest">Register</a><a href="#faq">FAQ</a></nav>
   </div>
 </header>
 
@@ -162,14 +138,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <div class="wrap hero">
     <p class="kicker">NZ Gamers present · Waitangi weekend 2027</p>
     <h1><span>NZ LAN</span><span class="champs">Champs</span></h1>
-    <p class="lede">One hall. One long weekend. The best teams in Aotearoa, face to face. Counter-Strike 2 headlines. Register your interest and help us decide the rest.</p>
+    <p class="lede">One game, done properly. The best Counter-Strike 2 teams in Aotearoa, in one hall, face to face over a long weekend. Register your interest and help us build it.</p>
     <ul class="facts">
       <li class="cut"><small>When</small><strong>Waitangi weekend</strong></li>
-      <li class="cut"><small>Headline game</small><strong>Counter-Strike 2</strong></li>
+      <li class="cut"><small>Game</small><strong>Counter-Strike 2</strong></li>
       <li class="cut"><small>Where</small><strong>Venue TBC</strong></li>
     </ul>
     <div class="cta-row">
-      <a class="btn" href="#interest">Register interest</a>
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSc5y-LTlNRb5AdUuZFdJdC-1k7cbH0K_Bl4F35Xv2_OejXGjQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Register interest</a>
       <span class="ghost">Free. Not a ticket or a team entry.</span>
     </div>
 
@@ -179,25 +155,25 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     </figure>
   </div>
 
-  <section id="games" class="alt">
+  <section id="game" class="alt">
     <div class="wrap">
-      <h2>The games</h2>
-      <p class="sub">Counter-Strike 2 carries the weekend. There is room for one or two side titles, and the form lets you vote.</p>
-      <div class="games">
-        <article class="game main cut">
-          <span class="tag">Main event</span>
+      <h2>The game</h2>
+      <p class="sub">Counter-Strike 2 is the only title on the card. Every hour of the weekend goes into doing one game properly.</p>
+      <div class="cards">
+        <article class="card main cut">
+          <span class="tag">The main event</span>
           <h3>Counter-Strike 2</h3>
-          <p>5v5 competitive. The headline bracket, played on stage in front of the biggest crowd.</p>
+          <p>5v5 competitive on stage, in front of the biggest CS2 crowd New Zealand has seen.</p>
         </article>
-        <article class="game cut">
-          <span class="tag">Likely side event</span>
-          <h3>VALORANT</h3>
-          <p>A 5v5 bracket running alongside, if enough teams register interest.</p>
+        <article class="card cut">
+          <span class="tag">Teams</span>
+          <h3>Five a side</h3>
+          <p>Bring a full roster, or sign up solo and we will help match you with a team.</p>
         </article>
-        <article class="game cut">
-          <span class="tag">Your call</span>
-          <h3>Third title</h3>
-          <p>Rocket League, Dota 2, Apex, Marvel Rivals or something else. Suggest one in the form.</p>
+        <article class="card cut">
+          <span class="tag">Format</span>
+          <h3>Bracket play</h3>
+          <p>Bracket, map pool and match rules will be announced once we know how many teams are keen.</p>
         </article>
       </div>
     </div>
@@ -206,14 +182,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <section id="format">
     <div class="wrap">
       <h2>Format at a glance</h2>
-      <p class="sub">This is the plan so far. Interest numbers decide the size, the venue and the games.</p>
+      <p class="sub">This is the plan so far. Interest numbers decide the size and the venue.</p>
       <dl class="spec">
         <dt>Dates</dt><dd>Waitangi weekend 2027, early February <span class="pill">TBC</span></dd>
         <dt>Venue</dt><dd>Sports hall or similar, North Island or South Island depending on where interest comes from <span class="pill">TBC</span></dd>
-        <dt>Teams</dt><dd>5v5 for CS2 and VALORANT. Solo sign-ups welcome, we will help match you to a team.</dd>
+        <dt>Game</dt><dd>Counter-Strike 2, 5v5</dd>
+        <dt>Teams</dt><dd>Full rosters welcome. Solo sign-ups will be matched to teams where we can.</dd>
         <dt>Entry</dt><dd>Team entry fee and prize pool announced once we know how many teams are keen <span class="pill">TBC</span></dd>
         <dt>Kit</dt><dd>Bring your own mouse, keyboard and headset. Station and network details to follow.</dd>
-        <dt>Spectators</dt><dd>Planned. Tell us if you would come to watch.</dd>
+        <dt>Spectators</dt><dd>Planned. Tell us in the form if you would come to watch.</dd>
       </dl>
     </div>
   </section>
@@ -221,95 +198,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <section id="interest" class="alt">
     <div class="wrap">
       <h2>Register your interest</h2>
-      <p class="sub">Takes a minute. We use your answers to pick the venue, the games and the format, then email everyone on the list before entries open.</p>
-
-      <div id="fallback" class="fallback" hidden>
-        Sign-ups are not available in this view. Open this page while signed in to Claude, or ask the NZ Gamers team for the link they are sharing.
-      </div>
-
-      <div class="formcard cut" id="formcard">
-        <form id="interestForm" novalidate>
-          <div class="row">
-            <div class="field">
-              <label for="handle">Gamertag</label>
-              <input type="text" id="handle" name="handle" autocomplete="nickname" maxlength="40" placeholder="e.g. kiwi_awp" required>
-            </div>
-            <div class="field">
-              <label for="email">Email <span class="hint">for updates only</span></label>
-              <input type="email" id="email" name="email" autocomplete="email" maxlength="120" placeholder="you@example.co.nz" required>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field">
-              <label for="region">Where are you based?</label>
-              <select id="region" name="region" required>
-                <option value="">Choose a region</option>
-                <option>Northland</option><option>Auckland</option><option>Waikato</option><option>Bay of Plenty</option>
-                <option>Gisborne / Hawke's Bay</option><option>Taranaki / Whanganui</option><option>Manawatū</option>
-                <option>Wellington</option><option>Nelson / Marlborough / West Coast</option><option>Canterbury</option>
-                <option>Otago</option><option>Southland</option><option>Outside NZ</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="travel">Would you travel for it?</label>
-              <select id="travel" name="travel" required>
-                <option value="">Choose one</option>
-                <option>Yes, anywhere in NZ</option>
-                <option>Yes, within my island</option>
-                <option>Only if it is in my region</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-          </div>
-
-          <fieldset>
-            <legend>Which games are you keen on? <span class="hint">pick any</span></legend>
-            <div class="opts" id="gamesOpts">
-              <label class="opt"><input type="checkbox" name="games" value="CS2"><span>Counter-Strike 2</span></label>
-              <label class="opt"><input type="checkbox" name="games" value="VALORANT"><span>VALORANT</span></label>
-              <label class="opt"><input type="checkbox" name="games" value="Other"><span>Something else</span></label>
-            </div>
-          </fieldset>
-
-          <div class="field">
-            <label for="otherGame">Third game suggestion <span class="hint">optional</span></label>
-            <input type="text" id="otherGame" name="otherGame" maxlength="60" placeholder="e.g. Rocket League">
-          </div>
-
-          <fieldset>
-            <legend>How would you take part?</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="role" value="Have a team" required><span>I have a team</span></label>
-              <label class="opt"><input type="radio" name="role" value="Need a team"><span>I need a team</span></label>
-              <label class="opt"><input type="radio" name="role" value="Spectator"><span>Spectating</span></label>
-              <label class="opt"><input type="radio" name="role" value="Volunteer"><span>Volunteer or crew</span></label>
-            </div>
-          </fieldset>
-
-          <div class="field">
-            <label for="teamName">Team name <span class="hint">if you have one</span></label>
-            <input type="text" id="teamName" name="teamName" maxlength="60">
-          </div>
-
-          <div class="field">
-            <label for="notes">Anything else we should know? <span class="hint">optional</span></label>
-            <textarea id="notes" name="notes" maxlength="600" placeholder="Venue ideas, sponsorship, accessibility needs, questions"></textarea>
-          </div>
-
-          <p id="formErr" class="err" role="alert"></p>
-          <div class="cta-row" style="margin-top:0">
-            <button type="submit" class="btn" id="submitBtn">Count me in</button>
-            <p class="note">Free to register. It does not lock you in.</p>
-          </div>
-        </form>
-      </div>
-
-      <div id="done" class="done cut" hidden>
-        <h3>You're on the list</h3>
-        <p>Thanks, <span id="doneName"></span>. We will email you when the dates, venue and entries are confirmed.</p>
-        <p>Want to change something? Your latest response replaces the old one.</p>
-        <button type="button" class="btn alt" id="editAgain">Update my answers</button>
+      <p class="sub">Takes about a minute. We use your answers to pick the venue and the format, then email everyone on the list before entries open.</p>
+      <div class="register cut">
+        <h3>Are you in?</h3>
+        <p>Tell us your gamertag, where you are based, whether you have a team and how far you would travel. Registering is free and does not lock you in.</p>
+        <a class="btn big" href="https://docs.google.com/forms/d/e/1FAIpQLSc5y-LTlNRb5AdUuZFdJdC-1k7cbH0K_Bl4F35Xv2_OejXGjQ/viewform?usp=publish-editor" target="_blank" rel="noopener">Register interest</a>
+        <p class="ghost">Opens a short Google Form in a new tab.</p>
       </div>
     </div>
   </section>
@@ -320,8 +214,9 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <p class="sub">Early days, so a few answers are still "we'll tell you soon".</p>
       <details><summary>When exactly is it?</summary><p>Waitangi weekend 2027, in early February. We will lock the exact days once the venue is booked.</p></details>
       <details><summary>Is registering interest the same as entering?</summary><p>No. It tells us who is keen so we can plan. Team entries open later and will be announced to everyone on the list.</p></details>
+      <details><summary>Will there be other games?</summary><p>No. This event is Counter-Strike 2 only.</p></details>
       <details><summary>Will there be prizes?</summary><p>That is the plan. The size depends on entries and sponsors, and will be announced before entries open.</p></details>
-      <details><summary>I don't have a team. Can I still play?</summary><p>Yes. Choose "I need a team" and we will do our best to connect solo players.</p></details>
+      <details><summary>I don't have a team. Can I still play?</summary><p>Yes. Choose "I need a team" in the form and we will do our best to connect solo players.</p></details>
       <details><summary>Can my business sponsor the event?</summary><p>We would like to hear from you. Add a note in the form with your company name and we will be in touch.</p></details>
     </div>
   </section>
@@ -362,20 +257,17 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     }
   }
   centers[3].push((centers[2][0] + centers[2][1]) / 2);
-  var lit = function (r, i) { return i === 0; };
   for (r = 0; r < 3; r++) {
     for (i = 0; i < centers[r].length; i++) {
       var x = r * colW, cy = centers[r][i], px = (r + 1) * colW, pcy = centers[r + 1][Math.floor(i / 2)];
       var mid = x + bw + (colW - bw) / 2;
-      var on = lit(r, i) && (r < 2 ? true : true);
-      var col = lit(r, i) ? "#ff3347" : "#243d78";
+      var col = i === 0 ? "#ff3347" : "#243d78";
       out += '<path d="M' + (x + bw) + ' ' + cy + 'H' + mid + 'V' + pcy + 'H' + px + '" fill="none" stroke="' + col + '" stroke-width="2.5"/>';
     }
   }
   for (r = 0; r < 3; r++) {
     for (i = 0; i < centers[r].length; i++) {
-      var on2 = lit(r, i);
-      out += '<rect x="' + (r * colW) + '" y="' + (centers[r][i] - bh / 2) + '" width="' + bw + '" height="' + bh + '" fill="' + (on2 ? "#ff3347" : "#16295d") + '"/>';
+      out += '<rect x="' + (r * colW) + '" y="' + (centers[r][i] - bh / 2) + '" width="' + bw + '" height="' + bh + '" fill="' + (i === 0 ? "#ff3347" : "#16295d") + '"/>';
     }
   }
   var fx = 3 * colW, fy = centers[3][0];
@@ -383,69 +275,4 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   out += '<text x="' + (fx + 95) + '" y="' + (fy + 9) + '" text-anchor="middle" font-family="Teko, Impact, sans-serif" font-weight="700" font-size="30" fill="#08122b" letter-spacing="1.5">CHAMPS</text>';
   svg.innerHTML = out;
 })();
-
-/* interest form */
-(function () {
-  var form = document.getElementById("interestForm");
-  var card = document.getElementById("formcard");
-  var done = document.getElementById("done");
-  var fallback = document.getElementById("fallback");
-  var err = document.getElementById("formErr");
-  var btn = document.getElementById("submitBtn");
-  var db = null, uid = null;
-
-  function show(registered, name) {
-    card.hidden = registered;
-    done.hidden = !registered;
-    if (registered) document.getElementById("doneName").textContent = name || "legend";
-  }
-  try { if (localStorage.getItem("nzlc-registered")) { show(true, localStorage.getItem("nzlc-name")); } } catch (e) {}
-
-  var ready = (async function () {
-    try {
-      if (!window.claude || !window.claude.use) throw 0;
-      db = await window.claude.use("db");
-      var user = await window.claude.use("user");
-      uid = user ? await user.id() : null;
-    } catch (e) { db = null; }
-    if (!db || !uid) { fallback.hidden = false; }
-  })();
-
-  document.getElementById("editAgain").addEventListener("click", function () { show(false); });
-
-  form.addEventListener("submit", async function (ev) {
-    ev.preventDefault();
-    err.textContent = "";
-    var f = form.elements;
-    var handle = f.handle.value.trim(), email = f.email.value.trim();
-    var role = (form.querySelector('input[name="role"]:checked') || {}).value;
-    var games = Array.prototype.map.call(form.querySelectorAll('input[name="games"]:checked'), function (i) { return i.value; });
-    if (!handle) { err.textContent = "Add your gamertag."; f.handle.focus(); return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "Enter a valid email so we can send you updates."; f.email.focus(); return; }
-    if (!f.region.value) { err.textContent = "Choose the region you are based in."; f.region.focus(); return; }
-    if (!f.travel.value) { err.textContent = "Tell us if you would travel."; f.travel.focus(); return; }
-    if (!role) { err.textContent = "Choose how you would take part."; return; }
-    if (!games.length && role !== "Spectator" && role !== "Volunteer") { err.textContent = "Pick at least one game."; return; }
-    await ready;
-    if (!db || !uid) { fallback.hidden = false; err.textContent = "Sign-ups are not available in this view."; return; }
-    btn.disabled = true; btn.textContent = "Saving";
-    try {
-      await db.doc("interest/" + uid).set({
-        handle: handle, email: email, region: f.region.value, travel: f.travel.value,
-        games: games, otherGame: f.otherGame.value.trim(), role: role,
-        teamName: f.teamName.value.trim(), notes: f.notes.value.trim(), submittedAt: Date.now()
-      });
-      try { localStorage.setItem("nzlc-registered", "1"); localStorage.setItem("nzlc-name", handle); } catch (e) {}
-      show(true, handle);
-      done.scrollIntoView({ block: "center" });
-    } catch (e) {
-      err.textContent = (e && e.code === "invalid_argument")
-        ? "This link only lets you view the page. Ask for the contributor link to register."
-        : "Could not save your sign-up. Check your connection and try again.";
-    }
-    btn.disabled = false; btn.textContent = "Count me in";
-  });
-})();
 </script>
-
-</body></html>
